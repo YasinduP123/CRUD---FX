@@ -236,7 +236,6 @@ public class placeOrderFormController implements Initializable {
 
 	private void calculate(){
 		netTotal += Integer.parseInt(txtQty.getText()) * Double.parseDouble(txtUnitPrice.getText());
-
 	}
 
 
