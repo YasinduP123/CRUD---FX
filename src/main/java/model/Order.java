@@ -17,5 +17,4 @@ public class Order {
 	private String custId;
 	private ArrayList<OrderDetail> orderDetails;
 
-
 }

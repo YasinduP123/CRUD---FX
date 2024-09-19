@@ -34,10 +34,10 @@ public class OrderController {
 			}
 
 			new Alert(Alert.AlertType.ERROR , "Order NOT Placed :(").show();
+			connection.rollback();
 			return false;
 
 		}finally {
-			connection.rollback();
 			connection.setAutoCommit(true);
 		}
 	}
