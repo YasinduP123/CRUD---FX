@@ -92,9 +92,7 @@ public class ViewOrderDetailsFormController implements Initializable {
 
 
 	private void getOrderDate(String orderId) {
-
 		lblOrderDate.setText((OrderController.getInstance().getOrderDate(orderId)).toString());
-
 	}
 
 	private void getNetTotal(List<SubOrderDetail> orderDetails ,ObservableList<ViewOrderDetailService> allDetails) {
