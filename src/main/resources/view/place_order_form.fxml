@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="624.0" prefWidth="866.0" style="-fx-background-color: C4DAD2;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.order.placeOrderFormController">
+<AnchorPane prefHeight="624.0" prefWidth="866.0" style="-fx-background-color: C4DAD2;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.order.PlaceOrderFormController">
    <children>
       <JFXComboBox fx:id="comboCustomerId" layoutX="96.0" layoutY="144.0" prefHeight="26.0" prefWidth="147.0" promptText="Customer ID" />
       <JFXComboBox fx:id="comboItemCode" layoutX="96.0" layoutY="200.0" prefHeight="26.0" prefWidth="147.0" promptText="Item Code" />

@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import controller.Customer.CustomerController;
 import controller.item.ItemController;
+import controller.util.CrudUtil;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -31,7 +32,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class placeOrderFormController implements Initializable {
+public class PlaceOrderFormController implements Initializable {
 	@FXML
 	public JFXTextField txtUnitPrice;
 
@@ -249,7 +250,7 @@ public class placeOrderFormController implements Initializable {
 		cartTms.forEach(obj->{
 			orderDetails.add(
 					new OrderDetail(
-							txtOrderId.getText(),
+							orderId,
 							obj.getItemCode(),
 							obj.getQty(),
 							0.0
@@ -260,7 +261,7 @@ public class placeOrderFormController implements Initializable {
 		Order order = new Order(orderId, date, customerId, orderDetails);
 		System.out.println(order);
 		try {
-			new OrderController().placeOrder(order);
+			OrderController.getInstance().placeOrder(order);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
@@ -275,4 +276,5 @@ public class placeOrderFormController implements Initializable {
 			throw new RuntimeException(e);
 		}
 	}
+
 }

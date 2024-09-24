@@ -1,16 +1,24 @@
 package controller.order;
 
 import controller.item.ItemController;
+import controller.util.CrudUtil;
 import db.DBConnection;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import model.Order;
 import model.OrderDetail;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDate;
 
 public class OrderController {
+
+	private static OrderController instance;
+	private OrderController(){
+
+	}
+
 	public boolean placeOrder(Order order) throws SQLException {
 		Connection connection = DBConnection.getInstance().getConnection();
 		try {
@@ -40,5 +48,42 @@ public class OrderController {
 		}finally {
 			connection.setAutoCommit(true);
 		}
+	}
+
+	public static OrderController getInstance() {
+		if (instance == null){
+			return instance = new OrderController();
+		}
+		return instance;
+	}
+
+	public ObservableList<String> loadOrderId() throws SQLException {
+		ObservableList<String> orderIdList = FXCollections.observableArrayList();
+		String SQL = "select OrderId from orders";
+
+		ResultSet rst = CrudUtil.execute(SQL);
+		while (rst.next()){
+			orderIdList.add(rst.getString(1));
+		}
+
+		return orderIdList;
+
+	}
+
+
+	public LocalDate getOrderDate(String orderId) {
+		LocalDate date = null;
+		String SQL = "select * from orders where orderId=?";
+		try {
+			ResultSet resultSet = CrudUtil.execute(SQL, orderId);
+			while (resultSet.next()){
+				date = LocalDate.parse(resultSet.getString(2));
+			}
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+		return date;
 	}
 }

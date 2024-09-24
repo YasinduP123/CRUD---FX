@@ -1,6 +1,5 @@
 package model;
 
-
 import lombok.*;
 
 @Setter
@@ -8,9 +7,10 @@ import lombok.*;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderDetail {
-	private String orderId;
+public class SubOrderDetail{
+
 	private String itemCode;
 	private Integer orderQty;
-	private Double discount;
+
 }
+

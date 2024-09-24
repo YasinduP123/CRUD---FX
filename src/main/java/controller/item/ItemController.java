@@ -5,9 +5,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Item;
 import model.OrderDetail;
+import model.Item;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ItemController implements ItemService {
@@ -120,12 +122,45 @@ public class ItemController implements ItemService {
 		return true;
 	}
 
+	@Override
+	public ObservableList<Item> getOrderItems(String itemCode) {
+		ObservableList<Item> orderItems = FXCollections.observableArrayList();
+
+		try {
+			String SQL = "select *  from Item where ItemCode=?";
+			ResultSet rst = CrudUtil.execute(SQL, itemCode);
+			while (rst.next()){
+				orderItems.add(
+						new Item(
+								rst.getString(1),
+								rst.getString(2),
+								rst.getString(3),
+								rst.getString(4),
+								rst.getInt(5)
+						)
+				);
+//
+//				System.out.println(rst.getString(1));
+//				System.out.println(rst.getString(2));
+//				System.out.println(rst.getString(3));
+//				System.out.println(rst.getString(4));
+//				System.out.println(rst.getInt(5));
+//				System.out.println("==========================================\n");
+
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		return orderItems;
+	}
+
 	public boolean updateStock(OrderDetail orderDetails) {
 
 		String SQL = "Update Item set qtyOnHand = qtyOnHand - ? where ItemCode = ? ";
-
 		try {
+
 		 return CrudUtil.execute(SQL , orderDetails.getOrderQty() , orderDetails.getItemCode());
+
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

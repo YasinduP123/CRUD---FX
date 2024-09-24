@@ -7,7 +7,7 @@ import lombok.*;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Item {
+public class Item{
     private String itemCode;
     private String description;
     private String packSize;

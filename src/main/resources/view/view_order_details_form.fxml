@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="550.0" prefWidth="715.0" style="-fx-background-color: #c7ecee;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.viewOrderDetails.ViewOrderDetailsFormController">
+   <children>
+      <Label prefHeight="70.0" prefWidth="774.0" style="-fx-background-color: black;" text="VIEW ORDER FORM" textFill="WHITE">
+         <padding>
+            <Insets left="253.0" />
+         </padding>
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <JFXComboBox fx:id="comboOrderId" layoutX="136.0" layoutY="111.0" prefHeight="30.0" prefWidth="133.0" promptText="Order ID" />
+      <Label fx:id="lblOrderDate" layoutX="553.0" layoutY="109.0" prefHeight="30.0" prefWidth="134.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <TableView fx:id="tblOrderView" layoutX="58.0" layoutY="244.0" prefHeight="260.0" prefWidth="657.0">
+        <columns>
+          <TableColumn fx:id="colItemCode" prefWidth="99.99996566772461" text="Item Code" />
+            <TableColumn fx:id="colQty" minWidth="5.5999755859375" prefWidth="113.5999755859375" text="QTY" />
+            <TableColumn fx:id="colItemDescription" minWidth="5.5999755859375" prefWidth="179.20001220703125" text="Item Description" />
+            <TableColumn fx:id="colUnitPrice" minWidth="5.5999755859375" prefWidth="129.60003662109375" text="Unit Price" />
+            <TableColumn fx:id="colPackSize" minWidth="5.5999755859375" prefWidth="131.99993896484375" text="Pack Size" />
+        </columns>
+      </TableView>
+      <Label fx:id="lblNetTotal" layoutX="553.0" layoutY="172.0" prefHeight="30.0" prefWidth="134.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="474.0" layoutY="108.0" prefHeight="30.0" prefWidth="77.0" text="Order Date :">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="474.0" layoutY="171.0" prefHeight="30.0" prefWidth="77.0" text="Net Total   :">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+   </children>
+</AnchorPane>
