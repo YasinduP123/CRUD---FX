@@ -19,11 +19,11 @@
          </font>
       </Label>
       <JFXComboBox fx:id="comboOrderId" layoutX="136.0" layoutY="111.0" prefHeight="30.0" prefWidth="133.0" promptText="Order ID" />
-      <Label fx:id="lblOrderDate" layoutX="553.0" layoutY="109.0" prefHeight="30.0" prefWidth="134.0">
+      <Label fx:id="lblOrderDate" layoutX="555.0" layoutY="129.0" prefHeight="30.0" prefWidth="134.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Label>
-      <TableView fx:id="tblOrderView" layoutX="58.0" layoutY="244.0" prefHeight="260.0" prefWidth="657.0">
+      <TableView fx:id="tblOrderView" layoutX="58.0" layoutY="264.0" prefHeight="260.0" prefWidth="657.0">
         <columns>
           <TableColumn fx:id="colItemCode" prefWidth="99.99996566772461" text="Item Code" />
             <TableColumn fx:id="colQty" minWidth="5.5999755859375" prefWidth="113.5999755859375" text="QTY" />
@@ -32,17 +32,37 @@
             <TableColumn fx:id="colPackSize" minWidth="5.5999755859375" prefWidth="131.99993896484375" text="Pack Size" />
         </columns>
       </TableView>
-      <Label fx:id="lblNetTotal" layoutX="553.0" layoutY="172.0" prefHeight="30.0" prefWidth="134.0">
+      <Label fx:id="lblNetTotal" layoutX="554.0" layoutY="212.0" prefHeight="30.0" prefWidth="134.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Label>
-      <Label layoutX="474.0" layoutY="108.0" prefHeight="30.0" prefWidth="77.0" text="Order Date :">
+      <Label layoutX="474.0" layoutY="128.0" prefHeight="30.0" prefWidth="77.0" text="Order Date :">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Label>
-      <Label layoutX="474.0" layoutY="171.0" prefHeight="30.0" prefWidth="77.0" text="Net Total   :">
+      <Label layoutX="474.0" layoutY="211.0" prefHeight="30.0" prefWidth="77.0" text="Net Total   :">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Label>
+      <Label fx:id="lblCustomerName" layoutX="556.0" layoutY="169.0" prefHeight="30.0" prefWidth="141.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="445.0" layoutY="168.0" prefHeight="30.0" prefWidth="104.0" text="Customer Name : ">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblCustomerId" layoutX="554.0" layoutY="89.0" prefHeight="30.0" prefWidth="122.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="466.0" layoutY="88.0" prefHeight="30.0" prefWidth="85.0" text="Customer ID : ">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

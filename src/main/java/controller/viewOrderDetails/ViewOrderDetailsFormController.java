@@ -1,6 +1,7 @@
 package controller.viewOrderDetails;
 
 import com.jfoenix.controls.JFXComboBox;
+import controller.Customer.CustomerController;
 import controller.item.ItemController;
 import controller.order.OrderController;
 import controller.order.OrderDetailController;
@@ -23,6 +24,12 @@ public class ViewOrderDetailsFormController implements Initializable {
 
 	@FXML
 	public TableColumn<?, ?> colPackSize;
+
+	@FXML
+	public Label lblCustomerId;
+
+	@FXML
+	public Label lblCustomerName;
 
 	@FXML
 	private TableColumn<?, ?> colItemCode;
@@ -65,7 +72,7 @@ public class ViewOrderDetailsFormController implements Initializable {
 		comboOrderId.getSelectionModel().selectedItemProperty().addListener((observableValue, oldVal, newVal) -> {
 			setDataToOrderDetailTable(newVal);
 			getOrderDate(newVal);
-
+			viewCustomerId(newVal);
 		});
 
 	}
@@ -76,6 +83,7 @@ public class ViewOrderDetailsFormController implements Initializable {
 			ObservableList<ViewOrderDetailService> allDetails = FXCollections.observableArrayList();
 
 			getNetTotal(orderDetails,allDetails);
+			viewCustomerId(orderId);
 
 			colItemCode.setCellValueFactory(new PropertyValueFactory<>("itemCode"));
 			colItemDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -90,9 +98,8 @@ public class ViewOrderDetailsFormController implements Initializable {
 		}
 	}
 
-
 	private void getOrderDate(String orderId) {
-		lblOrderDate.setText((OrderController.getInstance().getOrderDate(orderId)).toString());
+		lblOrderDate.setText((OrderController.getInstance().getOrderDate(orderId)).getOrderDate().toString());
 	}
 
 	private void getNetTotal(List<SubOrderDetail> orderDetails ,ObservableList<ViewOrderDetailService> allDetails) {
@@ -117,6 +124,7 @@ public class ViewOrderDetailsFormController implements Initializable {
 				Integer orderQty = subOrderDetail.getOrderQty();
 				netTotal += (unitPrice * orderQty);
 			}
+
 		}
 
 		String netTotalStr = String.format("%,.2f", netTotal);
@@ -124,5 +132,21 @@ public class ViewOrderDetailsFormController implements Initializable {
 
 		System.out.println(allDetails);
 	}
+
+	public void viewCustomerId(String orderId){
+		String custId = (OrderController.getInstance().getOrderDate(orderId)).getCustId();
+		lblCustomerId.setText(custId);
+		viewCustomerName(custId);
+	}
+
+	public void viewCustomerName(String custId){
+
+		Customer customer = CustomerController.getInstance().searchCustomer(custId);
+
+		lblCustomerName.setText(customer.getName());
+
+	}
+
+
 
 }

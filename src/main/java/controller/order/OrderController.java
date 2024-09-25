@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import model.Order;
 import model.OrderDetail;
+import model.SubOrder;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -71,19 +72,26 @@ public class OrderController {
 	}
 
 
-	public LocalDate getOrderDate(String orderId) {
+	public SubOrder getOrderDate(String orderId) {
 		LocalDate date = null;
+		String custName = null;
+		SubOrder subOrder = null;
+
 		String SQL = "select * from orders where orderId=?";
 		try {
 			ResultSet resultSet = CrudUtil.execute(SQL, orderId);
 			while (resultSet.next()){
 				date = LocalDate.parse(resultSet.getString(2));
+				custName = resultSet.getString(3);
+
+				subOrder = new SubOrder(orderId,date,custName);
+
 			}
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
 
-		return date;
+		return subOrder;
 	}
 }
