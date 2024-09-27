@@ -2,7 +2,6 @@ package controller.Customer;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
-import controller.util.CrudUtil;
 import db.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,10 +22,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class CustomerFormController implements Initializable {
+
+	@FXML
+	public JFXComboBox<String> comboCustId;
 
 	@FXML
 	private TableColumn<?, ?> colDob;
@@ -131,6 +132,9 @@ public class CustomerFormController implements Initializable {
 	@FXML
 	void btnSearchOnAction(ActionEvent event) {
 
+		Customer customer = CustomerController.getInstance().searchCustomer(txtId.getText());
+		viewCustomerSelectedByCombo(customer);
+
 	}
 
 	@FXML
@@ -177,6 +181,45 @@ public class CustomerFormController implements Initializable {
 			 throw new NullPointerException();
 		}
 
+		ObservableList<String> customerIdToCombo = CustomerController.getInstance().getCustomerIdToCombo();
+
+		comboCustId.setItems(customerIdToCombo);
+
+		comboCustId.getSelectionModel().selectedItemProperty().addListener((observableValue, oldId, newId) ->{
+			Customer customer = CustomerController.getInstance().searchCustomer(newId);
+			viewCustomerSelectedByCombo(customer);
+
+		} );
+
+	}
+
+	private void viewCustomerSelectedByCombo(Customer customer) {
+
+		ObservableList<GetCustomers> detailsSelectedCustomer = FXCollections.observableArrayList();
+
+		colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+		colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+		colDob.setCellValueFactory(new PropertyValueFactory<>("dob"));
+		colSalary.setCellValueFactory(new PropertyValueFactory<>("salary"));
+		colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+		colCity.setCellValueFactory(new PropertyValueFactory<>("city"));
+		colProvince.setCellValueFactory(new PropertyValueFactory<>("province"));
+		colPostalCode.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
+
+		detailsSelectedCustomer.add(
+				new GetCustomers(
+						customer.getId(),
+						customer.getTitle()+customer.getName(),
+						customer.getDob().toString(),
+						customer.getSalary(),
+						customer.getAddress(),
+						customer.getCity(),
+						customer.getProvince(),
+						customer.getPostalCode()
+				)
+		);
+
+		custTable.setItems(detailsSelectedCustomer);
 	}
 
 	private void load() {

@@ -138,5 +138,18 @@ public class CustomerController implements CustomerService {
 		return null;
 	}
 
+	public ObservableList<String> getCustomerIdToCombo(){
+		ObservableList<String> idList = FXCollections.observableArrayList();
+		try {
+ 			ResultSet rst = CrudUtil.execute("Select Custid from customer");
+			while (rst.next()){
+				idList.add(rst.getString(1));
+			}
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		return idList;
+	}
 
 }

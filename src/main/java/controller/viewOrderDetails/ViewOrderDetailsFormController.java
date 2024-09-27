@@ -129,8 +129,8 @@ public class ViewOrderDetailsFormController implements Initializable {
 
 		String netTotalStr = String.format("%,.2f", netTotal);
 		lblNetTotal.setText(netTotalStr);
-
 		System.out.println(allDetails);
+
 	}
 
 	public void viewCustomerId(String orderId){
@@ -140,9 +140,7 @@ public class ViewOrderDetailsFormController implements Initializable {
 	}
 
 	public void viewCustomerName(String custId){
-
 		Customer customer = CustomerController.getInstance().searchCustomer(custId);
-
 		lblCustomerName.setText(customer.getName());
 
 	}
